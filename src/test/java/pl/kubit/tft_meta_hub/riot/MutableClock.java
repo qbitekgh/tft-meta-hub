@@ -7,16 +7,16 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 /** A clock that stands still until a test moves it forward; also usable as a {@link Sleeper} that "waits" instantly. */
-final class MutableClock extends Clock implements Sleeper {
+public final class MutableClock extends Clock implements Sleeper {
 
 	private volatile Instant now;
 	private volatile Duration totalSlept = Duration.ZERO;
 
-	MutableClock(Instant start) {
+	public MutableClock(Instant start) {
 		this.now = start;
 	}
 
-	synchronized void advance(Duration duration) {
+	public synchronized void advance(Duration duration) {
 		now = now.plus(duration);
 	}
 
@@ -26,7 +26,7 @@ final class MutableClock extends Clock implements Sleeper {
 		advance(duration);
 	}
 
-	Duration totalSlept() {
+	public Duration totalSlept() {
 		return totalSlept;
 	}
 

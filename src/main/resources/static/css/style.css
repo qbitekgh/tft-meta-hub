@@ -179,6 +179,31 @@ input:focus {
     width: 7rem;
 }
 
+.form--inline input.input--wide {
+    width: 13rem;
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.badge--succeeded {
+    background: rgba(76, 175, 125, 0.18);
+    color: var(--success);
+}
+
+.badge--running {
+    background: rgba(212, 169, 79, 0.18);
+    color: var(--accent);
+}
+
+.badge--failed,
+.badge--key_invalid {
+    background: rgba(224, 96, 94, 0.18);
+    color: var(--error);
+}
+
 .button {
     padding: 0.55rem 1.1rem;
     background: var(--accent);

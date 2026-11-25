@@ -41,6 +41,92 @@
     </section>
 
     <section class="card">
+        <div class="card__header">
+            <h2>Match collector</h2>
+            <form th:action="@{/admin/collector/run}" method="post">
+                <button type="submit" class="button" th:disabled="${collector.running}">Collect now</button>
+            </form>
+        </div>
+        <p th:if="${collector.running}" class="alert">
+            A collection run is in progress. It can take several minutes; refresh this page to see the result.
+        </p>
+        <p class="muted">
+            Stored matches: <strong th:text="${collector.storedMatches}">0</strong>
+            <th:block th:if="${collector.latestGameAt}">
+                &middot; newest game <span th:text="${#temporals.format(collector.latestGameAt, 'yyyy-MM-dd HH:mm')}"></span> UTC
+            </th:block>
+        </p>
+        <p th:if="${collector.lastRun == null}" class="muted">The collector has not run yet.</p>
+        <table th:if="${collector.lastRun != null}" class="table" th:with="run=${collector.lastRun}">
+            <thead>
+            <tr>
+                <th>Last run</th>
+                <th>Status</th>
+                <th>Finished</th>
+                <th>Players</th>
+                <th>Saved</th>
+                <th>Skipped</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="|${#temporals.format(run.startedAt, 'yyyy-MM-dd HH:mm')} (${#strings.toLowerCase(run.trigger)})|">2026-01-01 12:00</td>
+                <td><span th:text="${run.status}" th:class="|badge badge--${#strings.toLowerCase(run.status)}|">SUCCEEDED</span></td>
+                <td th:text="${run.finishedAt != null ? #temporals.format(run.finishedAt, 'HH:mm:ss') : '–'}">12:08:00</td>
+                <td th:text="${run.playersChecked}">0</td>
+                <td th:text="${run.matchesSaved}">0</td>
+                <td th:text="${run.matchesSkipped}">0</td>
+            </tr>
+            </tbody>
+        </table>
+        <p th:if="${collector.lastRun != null and collector.lastRun.errorMessage != null}"
+           th:text="${collector.lastRun.errorMessage}" class="alert alert--error">Error</p>
+    </section>
+
+    <section class="card">
+        <h2>Patches</h2>
+        <p class="muted">
+            Riot's match data has no patch number, so every match gets the patch that was live when it was played.
+            The newest patch also decides which set the collector accepts. Times are in UTC.
+        </p>
+        <p th:if="${#lists.isEmpty(patches)}" class="alert alert--error">
+            No patches yet. Add the current patch before collecting matches.
+        </p>
+        <table th:unless="${#lists.isEmpty(patches)}" class="table">
+            <thead>
+            <tr>
+                <th>Patch</th>
+                <th>Set</th>
+                <th>Live since (UTC)</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patch : ${patches}">
+                <td th:text="${patch.patch}">18.1</td>
+                <td th:text="${patch.setNumber}">18</td>
+                <td th:text="${#temporals.format(patch.startsAt, 'yyyy-MM-dd HH:mm')}">2026-11-19 10:00</td>
+                <td>
+                    <form th:action="@{/admin/patches/{id}/delete(id=${patch.id})}" method="post"
+                          onsubmit="return confirm('Remove this patch? Already collected matches keep their patch label.');">
+                        <button type="submit" class="link-button link-button--danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <form th:action="@{/admin/patches}" method="post" class="form form--inline">
+            <label for="patch">Patch</label>
+            <input id="patch" name="patch" type="text" placeholder="e.g. 18.2" maxlength="10" required>
+            <label for="patchSetNumber">Set</label>
+            <input id="patchSetNumber" name="setNumber" type="number" min="1" max="99" placeholder="18" required>
+            <label for="startsAt">Live since (UTC)</label>
+            <input id="startsAt" name="startsAt" type="datetime-local" required class="input--wide">
+            <button type="submit" class="button">Add patch</button>
+        </form>
+    </section>
+
+    <section class="card">
         <h2>Game data</h2>
         <p class="muted">
             Downloads champions, traits and items of a set from Community Dragon.

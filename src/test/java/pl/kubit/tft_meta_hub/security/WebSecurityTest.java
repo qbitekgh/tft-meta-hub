@@ -1,5 +1,6 @@
 package pl.kubit.tft_meta_hub.security;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -7,12 +8,17 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import pl.kubit.tft_meta_hub.collector.CollectorRunner;
+import pl.kubit.tft_meta_hub.collector.CollectorStatus;
+import pl.kubit.tft_meta_hub.collector.CollectorStatusService;
 import pl.kubit.tft_meta_hub.gamedata.GameDataImportService;
+import pl.kubit.tft_meta_hub.gamedata.GamePatchService;
 import pl.kubit.tft_meta_hub.tierlist.PublicTierListService;
 import pl.kubit.tft_meta_hub.tierlist.TierListService;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -45,6 +51,20 @@ class WebSecurityTest {
 
 	@MockitoBean
 	private PublicTierListService publicTierListService;
+
+	@MockitoBean
+	private CollectorRunner collectorRunner;
+
+	@MockitoBean
+	private CollectorStatusService collectorStatusService;
+
+	@MockitoBean
+	private GamePatchService gamePatchService;
+
+	@BeforeEach
+	void setUp() {
+		given(collectorStatusService.getStatus()).willReturn(new CollectorStatus(false, null, 0, null));
+	}
 
 	@Test
 	void shouldShowHomePageWithRiotNotice_whenUserIsAnonymous() throws Exception {

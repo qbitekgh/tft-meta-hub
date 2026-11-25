@@ -35,6 +35,13 @@ app:
       - requests: 100
         window: 2m
     max-attempts: 3
+  collector:
+    max-matches-per-run: 300
+    match-ids-per-player: 20
+    retention-days: 14
+    # Off by default: a development API key expires every 24 hours
+    schedule-enabled: false
+    schedule-cron: "0 0 */6 * * *"
   cdragon:
     base-url: https://raw.communitydragon.org/latest
     data-path: /cdragon/tft/en_us.json
