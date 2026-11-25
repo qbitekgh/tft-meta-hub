@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Admin')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container page">
+    <h1>Admin panel</h1>
+
+    <p th:if="${successMessage}" th:text="${successMessage}" class="alert alert--success"></p>
+    <p th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert--error"></p>
+
+    <section class="card">
+        <h2>Game data</h2>
+        <p class="muted">
+            Downloads champions, traits and items of a set from Community Dragon.
+            Importing the same set again updates existing records.
+        </p>
+        <form th:action="@{/admin/game-data/import}" method="post" class="form form--inline">
+            <label for="setNumber">Set number</label>
+            <input id="setNumber" name="setNumber" type="number" min="1" max="99" placeholder="e.g. 18" required>
+            <button type="submit" class="button">Import set data</button>
+        </form>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

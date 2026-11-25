@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | TFT Meta Hub'">TFT Meta Hub</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header th:fragment="header" class="site-header">
+    <div class="container site-header__inner">
+        <a th:href="@{/}" class="site-header__logo">TFT Meta Hub</a>
+        <nav class="site-nav">
+            <a th:href="@{/}">Tier list</a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Admin</a>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" class="site-nav__logout">
+                <button type="submit" class="link-button">Log out</button>
+            </form>
+        </nav>
+    </div>
+</header>
+
+<footer th:fragment="footer" class="site-footer">
+    <div class="container">
+        <p class="site-footer__legal">
+            TFT Meta Hub isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone
+            officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties
+            are trademarks or registered trademarks of Riot Games, Inc.
+        </p>
+        <p sec:authorize="isAnonymous()" class="site-footer__login"><a th:href="@{/login}">Admin login</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

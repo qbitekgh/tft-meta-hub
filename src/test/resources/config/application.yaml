@@ -1,0 +1,6 @@
+# Test-only overrides. Spring Boot reads classpath:/config/application.yaml after classpath:/application.yaml,
+# so these values win over the main configuration (and over a local .env file).
+app:
+  admin:
+    username: test-admin
+    password: test-password

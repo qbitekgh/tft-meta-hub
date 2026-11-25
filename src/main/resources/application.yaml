@@ -1,6 +1,9 @@
 spring:
   application:
     name: tft-meta-hub
+  config:
+    # Local development: values from the git-ignored .env file (RIOT_API_KEY, ADMIN_USERNAME, ADMIN_PASSWORD)
+    import: optional:file:.env[.properties]
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/tftmetahub}
     username: ${DB_USERNAME:tftmetahub}
@@ -11,6 +14,9 @@ spring:
       ddl-auto: validate
 
 app:
+  admin:
+    username: ${ADMIN_USERNAME:}
+    password: ${ADMIN_PASSWORD:}
   cdragon:
     base-url: https://raw.communitydragon.org/latest
     data-path: /cdragon/tft/en_us.json
