@@ -1,0 +1,368 @@
+{
+  "metadata": {
+    "data_version": "6",
+    "match_id": "EUN1_4027724406",
+    "participants": [
+      "test-puuid-1",
+      "test-puuid-2"
+    ]
+  },
+  "info": {
+    "endOfGameResult": "GameComplete",
+    "gameCreation": 1794565388143,
+    "gameId": 4027724406,
+    "game_datetime": 1794567573940,
+    "matchId": "0ebf2a57-7048-3fd5-9223-40a4144bc919",
+    "game_length": 2183.209716796875,
+    "game_version": "TFT Unreal Version ?.?.?.?",
+    "mapId": 22,
+    "participants": [
+      {
+        "companion": {
+          "content_ID": "67d000a4-7624-4b0f-991d-eae9c90f92cc",
+          "item_ID": 48003,
+          "skin_ID": 0,
+          "species": ""
+        },
+        "gold_left": 1,
+        "last_round": 37,
+        "level": 9,
+        "missions": {
+          "PlayerScore2": 216
+        },
+        "placement": 1,
+        "players_eliminated": 0,
+        "puuid": "test-puuid-1",
+        "riotIdGameName": "Player1",
+        "riotIdTagline": "TEST",
+        "time_eliminated": 2182.9259359128773,
+        "total_damage_to_players": 0,
+        "units": [
+          {
+            "character_id": "DA_18_Rakan",
+            "itemNames": [],
+            "name": "",
+            "rarity": 0,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_Morgana",
+            "itemNames": [
+              "DA_VoidStaff",
+              "DA_GiantSlayer"
+            ],
+            "name": "",
+            "rarity": 3,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_Taric18",
+            "itemNames": [],
+            "name": "",
+            "rarity": 4,
+            "tier": 1
+          },
+          {
+            "character_id": "DA_18_Alune",
+            "itemNames": [
+              "DA_SpearOfShojin",
+              "DA_JeweledGauntlet",
+              "DA_StrikersFlail"
+            ],
+            "name": "",
+            "rarity": 4,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_Sentinel18",
+            "itemNames": [
+              "DA_GargoyleStoneplate",
+              "DA_GargoyleStoneplate"
+            ],
+            "name": "",
+            "rarity": 3,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_Lillia",
+            "itemNames": [
+              "DA_ProtectorsVow",
+              "DA_GargoyleStoneplate",
+              "DA_ProtectorsVow"
+            ],
+            "name": "",
+            "rarity": 3,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_Diana",
+            "itemNames": [],
+            "name": "",
+            "rarity": 2,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_Ivern",
+            "itemNames": [
+              "DA_SpearOfShojin",
+              "DA_18_EmblemFloraFatalis",
+              "DA_ArchangelsStaff"
+            ],
+            "name": "",
+            "rarity": 4,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_Fiddlesticks18",
+            "itemNames": [],
+            "name": "",
+            "rarity": 2,
+            "tier": 1
+          }
+        ],
+        "traits": [
+          {
+            "name": "DA_18_Coven",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 4
+          },
+          {
+            "name": "DA_18_Defender",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_18_Fae",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 2
+          },
+          {
+            "name": "DA_18_Greenfather",
+            "num_units": 1,
+            "style": 3,
+            "tier_current": 1,
+            "tier_total": 1
+          },
+          {
+            "name": "DA_18_Invoker",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 4
+          },
+          {
+            "name": "DA_18_Lunar",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 4
+          },
+          {
+            "name": "DA_Riftbeast18",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 4
+          },
+          {
+            "name": "DA_18_Slayer",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_18_Spellweaver",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_18_Vanguard",
+            "num_units": 4,
+            "style": 2,
+            "tier_current": 2,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_FloraFatalis18",
+            "num_units": 2,
+            "style": 4,
+            "tier_current": 2,
+            "tier_total": 2
+          },
+          {
+            "name": "DA_Emerald18",
+            "num_units": 1,
+            "style": 3,
+            "tier_current": 1,
+            "tier_total": 1
+          },
+          {
+            "name": "DA_Juggernaut18",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_AluneUniqueTrait18",
+            "num_units": 1,
+            "style": 3,
+            "tier_current": 1,
+            "tier_total": 1
+          }
+        ],
+        "win": true
+      },
+      {
+        "companion": {
+          "content_ID": "7838abdc-a647-458e-8d3f-fc771460b7e4",
+          "item_ID": 110007,
+          "skin_ID": 0,
+          "species": ""
+        },
+        "gold_left": 1,
+        "last_round": 21,
+        "level": 6,
+        "missions": {
+          "PlayerScore2": 60
+        },
+        "placement": 8,
+        "players_eliminated": 0,
+        "puuid": "test-puuid-2",
+        "riotIdGameName": "Player2",
+        "riotIdTagline": "TEST",
+        "time_eliminated": 1254.6786621585488,
+        "total_damage_to_players": 0,
+        "units": [
+          {
+            "character_id": "DA_Karma18",
+            "itemNames": [
+              "DA_BlueBuff",
+              "DA_JeweledGauntlet",
+              "DA_18_EmblemExecutioner"
+            ],
+            "name": "",
+            "rarity": 0,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_Leona",
+            "itemNames": [],
+            "name": "",
+            "rarity": 0,
+            "tier": 3
+          },
+          {
+            "character_id": "DA_18_Yorick",
+            "itemNames": [
+              "DA_WarmogsArmor",
+              "DA_Crownguard"
+            ],
+            "name": "",
+            "rarity": 0,
+            "tier": 3
+          },
+          {
+            "character_id": "DA_18_Yunara",
+            "itemNames": [
+              "DA_Artifact_GoldCollector",
+              "DA_SpearOfShojin",
+              "DA_LastWhisper"
+            ],
+            "name": "",
+            "rarity": 1,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_Sejuani",
+            "itemNames": [],
+            "name": "",
+            "rarity": 1,
+            "tier": 2
+          },
+          {
+            "character_id": "DA_18_LeBlanc",
+            "itemNames": [],
+            "name": "",
+            "rarity": 1,
+            "tier": 2
+          }
+        ],
+        "traits": [
+          {
+            "name": "DA_18_Blossom",
+            "num_units": 3,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 5
+          },
+          {
+            "name": "DA_18_Defender",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_18_Elderwood",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 5
+          },
+          {
+            "name": "DA_18_Executioner",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_18_Solar",
+            "num_units": 2,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 1
+          },
+          {
+            "name": "DA_18_Spellweaver",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 3
+          },
+          {
+            "name": "DA_18_Summoner",
+            "num_units": 1,
+            "style": 0,
+            "tier_current": 0,
+            "tier_total": 2
+          },
+          {
+            "name": "DA_Juggernaut18",
+            "num_units": 2,
+            "style": 1,
+            "tier_current": 1,
+            "tier_total": 3
+          }
+        ],
+        "win": false
+      }
+    ],
+    "product_id": "teamfighttactics",
+    "queueId": 1100,
+    "queue_id": 1100,
+    "tft_game_type": "standard",
+    "tft_set_core_name": "TFTSet18",
+    "tft_set_number": 18
+  }
+}

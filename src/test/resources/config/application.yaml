@@ -4,3 +4,6 @@ app:
   admin:
     username: test-admin
     password: test-password
+  riot:
+    # Tests never call the real Riot API; without a key the client refuses to send any request.
+    api-key: ""

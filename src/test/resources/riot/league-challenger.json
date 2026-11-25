@@ -1,0 +1,39 @@
+{
+  "tier": "CHALLENGER",
+  "queue": "RANKED_TFT",
+  "entries": [
+    {
+      "puuid": "test-puuid-1",
+      "leaguePoints": 1969,
+      "rank": "I",
+      "wins": 235,
+      "losses": 71,
+      "veteran": true,
+      "inactive": false,
+      "freshBlood": false,
+      "hotStreak": true
+    },
+    {
+      "puuid": "test-puuid-2",
+      "leaguePoints": 1863,
+      "rank": "I",
+      "wins": 202,
+      "losses": 51,
+      "veteran": true,
+      "inactive": false,
+      "freshBlood": false,
+      "hotStreak": true
+    },
+    {
+      "puuid": "test-puuid-3",
+      "leaguePoints": 1573,
+      "rank": "I",
+      "wins": 241,
+      "losses": 136,
+      "veteran": true,
+      "inactive": false,
+      "freshBlood": false,
+      "hotStreak": true
+    }
+  ]
+}

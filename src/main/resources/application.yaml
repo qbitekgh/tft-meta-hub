@@ -24,6 +24,17 @@ app:
   admin:
     username: ${ADMIN_USERNAME:}
     password: ${ADMIN_PASSWORD:}
+  riot:
+    api-key: ${RIOT_API_KEY:}
+    host-url: https://{host}.api.riotgames.com
+    regional-host: europe
+    # Development key limits; Riot counts them separately for every routing host
+    rate-limits:
+      - requests: 20
+        window: 1s
+      - requests: 100
+        window: 2m
+    max-attempts: 3
   cdragon:
     base-url: https://raw.communitydragon.org/latest
     data-path: /cdragon/tft/en_us.json
