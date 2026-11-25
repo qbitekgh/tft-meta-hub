@@ -1,0 +1,485 @@
+{
+  "items": [
+    {
+      "apiName": "DA_Component_BFSword",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_bfsword.tex",
+      "isAugment": false,
+      "name": "B.F. Sword",
+      "tags": [
+        "component"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_Component_RecurveBow",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_recurvebow.tex",
+      "isAugment": false,
+      "name": "Recurve Bow",
+      "tags": [
+        "component"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_Component_NeedlesslyLargeRod",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_needlesslylargerod.tex",
+      "isAugment": false,
+      "name": "Needlessly Large Rod",
+      "tags": [
+        "component"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_GuinsoosRageblade",
+      "associatedTraits": [],
+      "composition": [
+        "DA_Component_RecurveBow",
+        "DA_Component_NeedlesslyLargeRod"
+      ],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_guinsoosrageblade.tex",
+      "isAugment": false,
+      "name": "Guinsoo's Rageblade",
+      "tags": [
+        "{7ea41d13}",
+        "AttackSpeed"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT_Item_GuinsoosRageblade",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_RecurveBow",
+        "TFT_Item_NeedlesslyLargeRod"
+      ],
+      "desc": "Gain @AttackSpeedPerStack@% stacking Attack Speed every second.",
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_guinsoosrageblade.tex",
+      "isAugment": false,
+      "name": "Guinsoo's Rageblade",
+      "tags": [
+        "{7ea41d13}",
+        "AttackSpeed"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_18_EmblemFae",
+      "associatedTraits": [],
+      "composition": [
+        "DA_Component_Spatula",
+        "DA_Component_BFSword"
+      ],
+      "desc": null,
+      "icon": "assets/maps/particles/tft/item_icons/traits/spatula/set18/tft18_emblem_fae.tex",
+      "isAugment": false,
+      "name": "Fae Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_GuinsoosRagebladeRadiant",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft5_item_guinsoosragebladeradiant.tex",
+      "isAugment": false,
+      "name": "Radiant Guinsoo's Rageblade",
+      "tags": [
+        "{6ef5c598}",
+        "{ec243f6b}",
+        "AttackSpeed"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT_Item_Artifact_Fishbones",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder's attacks target random enemies.",
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_artifact_fishbones.tex",
+      "isAugment": false,
+      "name": "Fishbones",
+      "tags": [
+        "{44ace175}",
+        "{ec243f6b}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_Consumable_ItemRemover",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_consumable_itemremover.tex",
+      "isAugment": false,
+      "name": "Item Remover",
+      "tags": [
+        "Consumable",
+        "TFT_Consumable_ItemRemover"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT_Assist_1x2cost",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "2-cost champion",
+      "icon": "assets/maps/particles/tft/item_icons/pairs/doubleup_assistarmory_champ_2c.tex",
+      "isAugment": false,
+      "name": "2-cost champion",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT_Item_Blank",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": null,
+      "icon": "assets/maps/tft/icons/items/hexcore/tft_item_blank.tex",
+      "isAugment": false,
+      "name": null,
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "DA_18_AfterShock",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "After @ActivationDelay@ seconds, stun all enemies for @StunDuration@ seconds.",
+      "icon": "assets/ux/tft/hud/zaps/wands/set18_mechanicicon.tex",
+      "isAugment": false,
+      "name": "Aftershock",
+      "tags": [
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "DA_18_RiftbeastTraitAugment",
+      "associatedTraits": [
+        "DA_Riftbeast18"
+      ],
+      "composition": [],
+      "desc": "You can now choose a second Alpha Riftbeast. Alpha Riftbeasts gain @BonusHP*100@% max Health and @BonusAS*100@% Attack S",
+      "icon": "assets/maps/tft/icons/augments/hexcore/missing-t2.tex",
+      "isAugment": true,
+      "name": "Omega Riftbeast",
+      "tags": [
+        "{ce1fd21c}"
+      ],
+      "unique": false
+    }
+  ],
+  "setData": [
+    {
+      "number": 18,
+      "mutator": "TFTSet18",
+      "name": "Set10",
+      "items": [
+        "DA_Component_BFSword",
+        "DA_Component_RecurveBow",
+        "DA_Component_NeedlesslyLargeRod",
+        "DA_GuinsoosRageblade",
+        "TFT_Item_GuinsoosRageblade",
+        "DA_18_EmblemFae",
+        "DA_GuinsoosRagebladeRadiant",
+        "TFT_Item_Artifact_Fishbones",
+        "DA_Consumable_ItemRemover",
+        "TFT_Assist_1x2cost",
+        "TFT_Item_Blank",
+        "DA_18_AfterShock"
+      ],
+      "augments": [
+        "DA_18_RiftbeastTraitAugment"
+      ]
+    },
+    {
+      "number": 18,
+      "mutator": "TFTSet18_PAIRS",
+      "name": "Set10",
+      "items": [
+        "TFT_Item_Artifact_Fishbones"
+      ],
+      "augments": []
+    }
+  ],
+  "sets": {
+    "18": {
+      "name": "Set10",
+      "champions": [
+        {
+          "apiName": "DA_18_Xayah",
+          "characterName": "DA_18_Xayah",
+          "cost": 1,
+          "icon": "assets/characters/tft18_xayah/skins/base/images/tft18_xayah_splash_centered_8.tex",
+          "name": "Xayah",
+          "role": null,
+          "squareIcon": "assets/characters/tft18_xayah/skins/base/images/tft18_xayah_splash_tile_8.tex",
+          "tileIcon": "assets/characters/tft18_xayah/tft18_xayah_square.tex",
+          "traits": [
+            "Elderwood",
+            "Fae",
+            "Rapidfire"
+          ]
+        },
+        {
+          "apiName": "DA_18_Ornn",
+          "characterName": "DA_18_Ornn",
+          "cost": 1,
+          "icon": "assets/characters/tft18_ornn/skins/base/images/tft18_ornn_splash_centered_2.tex",
+          "name": "Ornn",
+          "role": null,
+          "squareIcon": "assets/characters/tft18_ornn/skins/base/images/tft18_ornn_splash_tile_2.tex",
+          "tileIcon": "assets/characters/tft18_ornn/tft18_ornn_square.tex",
+          "traits": [
+            "Elderwood",
+            "Defender"
+          ]
+        },
+        {
+          "apiName": "DA_Lux18_Base",
+          "characterName": "DA_Lux18_Base",
+          "cost": 5,
+          "icon": "assets/characters/tft18_lux/skins/base/images/tft18_lux_splash_centered_7.tex",
+          "name": "Lux",
+          "role": null,
+          "squareIcon": "assets/characters/tft18_lux/skins/base/images/tft18_lux_splash_tile_7.tex",
+          "tileIcon": "assets/characters/tft18_lux/tft18_lux_square.tex",
+          "traits": [
+            "Avatar"
+          ]
+        },
+        {
+          "apiName": "DA_18_Lux_Fae",
+          "characterName": "DA_18_Lux_Fae",
+          "cost": 5,
+          "icon": "assets/characters/tft18_lux/skins/base/images/tft18_lux_splash_centered_7.tex",
+          "name": "Lux (Fae)",
+          "role": null,
+          "squareIcon": "assets/characters/tft18_lux/hud/splashes/t_18_lux_fae_teamplanner.tex",
+          "tileIcon": "assets/characters/tft18_lux/tft18_lux_fae_square.tex",
+          "traits": [
+            "Fae",
+            "Avatar"
+          ]
+        },
+        {
+          "apiName": "TFT_BlueGolem",
+          "characterName": "TFT_BlueGolem",
+          "cost": 1,
+          "icon": "assets/ux/tft/championsplashes/tft_bluegolem.tex",
+          "name": "Golem",
+          "role": "APTank",
+          "squareIcon": "assets/ux/tft/championsplashes/tft_bluegolem_mobile.tex",
+          "tileIcon": "assets/characters/tft_bluegolem/hud/tft_bluegolem_spell.tex",
+          "traits": []
+        }
+      ],
+      "traits": [
+        {
+          "apiName": "DA_18_Elderwood",
+          "effects": [
+            {
+              "maxUnits": 4,
+              "minUnits": 3,
+              "style": 1,
+              "variables": {
+                "{0f90e7a4}": 0.25,
+                "{4013f48e}": 0.10000000149011612
+              }
+            },
+            {
+              "maxUnits": 6,
+              "minUnits": 5,
+              "style": 3,
+              "variables": {
+                "{0f90e7a4}": 0.25,
+                "{4013f48e}": 0.10000000149011612,
+                "{b027c2f9}": 200.0
+              }
+            },
+            {
+              "maxUnits": 8,
+              "minUnits": 7,
+              "style": 5,
+              "variables": {
+                "{0f90e7a4}": 0.25,
+                "{4013f48e}": 0.10000000149011612
+              }
+            },
+            {
+              "maxUnits": 10,
+              "minUnits": 9,
+              "style": 5,
+              "variables": {
+                "{0f90e7a4}": 0.25,
+                "{4013f48e}": 0.10000000149011612
+              }
+            },
+            {
+              "maxUnits": 25000,
+              "minUnits": 11,
+              "style": 6,
+              "variables": {
+                "{0f90e7a4}": 0.25,
+                "{4013f48e}": 0.10000000149011612
+              }
+            }
+          ],
+          "icon": "assets/ux/traiticons/trait_icon_18_elderwood.tex",
+          "name": "Elderwood"
+        },
+        {
+          "apiName": "DA_18_LuxUniqueTrait",
+          "effects": [
+            {
+              "maxUnits": 25000,
+              "minUnits": 1,
+              "style": 4,
+              "variables": {}
+            }
+          ],
+          "icon": "assets/ux/traiticons/trait_icon_18_avatar.tex",
+          "name": "Avatar"
+        },
+        {
+          "apiName": "DA_18_Rapidfire",
+          "effects": [
+            {
+              "maxUnits": 2,
+              "minUnits": 2,
+              "style": 1,
+              "variables": {
+                "ASperAttack": 0.029999971389770508,
+                "MaxStacks": 10.0,
+                "{1d98dcec}": 0.10000002384185791
+              }
+            },
+            {
+              "maxUnits": 3,
+              "minUnits": 3,
+              "style": 3,
+              "variables": {
+                "ASperAttack": 0.04999995231628418,
+                "MaxStacks": 10.0,
+                "{1d98dcec}": 0.10000002384185791
+              }
+            },
+            {
+              "maxUnits": 4,
+              "minUnits": 4,
+              "style": 3,
+              "variables": {
+                "ASperAttack": 0.0700000524520874,
+                "MaxStacks": 10.0,
+                "{1d98dcec}": 0.10000002384185791
+              }
+            },
+            {
+              "maxUnits": 25000,
+              "minUnits": 5,
+              "style": 5,
+              "variables": {
+                "ASperAttack": 0.10000002384185791,
+                "MaxStacks": 10.0,
+                "{1d98dcec}": 0.10000002384185791
+              }
+            }
+          ],
+          "icon": "assets/ux/traiticons/trait_icon_18_rapidfire.tex",
+          "name": "Rapidfire"
+        },
+        {
+          "apiName": "DA_18_Fae",
+          "effects": [
+            {
+              "maxUnits": 3,
+              "minUnits": 2,
+              "style": 1,
+              "variables": {
+                "ADAP": 4.5,
+                "Heal": 3.0,
+                "HealThreshold": 0.5
+              }
+            },
+            {
+              "maxUnits": 25000,
+              "minUnits": 4,
+              "style": 5,
+              "variables": {
+                "ADAP": 7.0,
+                "Heal": 5.0,
+                "HealThreshold": 0.5
+              }
+            }
+          ],
+          "icon": "assets/ux/traiticons/trait_icon_18_fae.tex",
+          "name": "Fae"
+        },
+        {
+          "apiName": "DA_18_Defender",
+          "effects": [
+            {
+              "maxUnits": 3,
+              "minUnits": 2,
+              "style": 1,
+              "variables": {
+                "{0eb6405e}": 12.0,
+                "{8c16b281}": 25.0
+              }
+            },
+            {
+              "maxUnits": 5,
+              "minUnits": 4,
+              "style": 3,
+              "variables": {
+                "{0eb6405e}": 12.0,
+                "{8c16b281}": 60.0
+              }
+            },
+            {
+              "maxUnits": 25000,
+              "minUnits": 6,
+              "style": 5,
+              "variables": {
+                "{0eb6405e}": 12.0,
+                "{8c16b281}": 115.0
+              }
+            }
+          ],
+          "icon": "assets/ux/traiticons/trait_icon_18_defender.tex",
+          "name": "Defender"
+        },
+        {
+          "apiName": "DA_18_Eclipse",
+          "effects": [
+            {
+              "maxUnits": 25000,
+              "minUnits": null,
+              "style": 1,
+              "variables": {
+                "DelaySeconds": 8.0,
+                "{53db05e8}": 3.5
+              }
+            }
+          ],
+          "icon": "assets/ux/traiticons/trait_icon_18_eclipse.tex",
+          "name": "Eclipse"
+        }
+      ]
+    }
+  }
+}

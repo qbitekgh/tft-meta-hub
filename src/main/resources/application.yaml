@@ -1,3 +1,17 @@
 spring:
   application:
     name: tft-meta-hub
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tftmetahub}
+    username: ${DB_USERNAME:tftmetahub}
+    password: ${DB_PASSWORD:tftmetahub}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+
+app:
+  cdragon:
+    base-url: https://raw.communitydragon.org/latest
+    data-path: /cdragon/tft/en_us.json
+    assets-base-url: https://raw.communitydragon.org/latest/game/
