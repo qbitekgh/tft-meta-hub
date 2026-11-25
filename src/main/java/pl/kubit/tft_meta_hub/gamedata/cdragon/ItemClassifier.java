@@ -31,7 +31,8 @@ final class ItemClassifier {
 		if (item.composition() != null && item.composition().size() == 2) {
 			return Optional.of(ItemCategory.COMPLETED);
 		}
-		if (item.apiName().contains("Item_Artifact_")) {
+		// TFT_Item_Artifact_Fishbones, but also set-specific DA_Artifact_GoldCollector (set 18)
+		if (item.apiName().contains("_Artifact_")) {
 			return Optional.of(ItemCategory.ARTIFACT);
 		}
 		if (item.name().startsWith("Radiant ")) {

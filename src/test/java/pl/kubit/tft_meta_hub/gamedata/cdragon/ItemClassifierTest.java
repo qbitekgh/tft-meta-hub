@@ -41,6 +41,13 @@ class ItemClassifierTest {
 	}
 
 	@Test
+	void shouldReturnArtifact_whenArtifactHasSetSpecificPrefix() {
+		CdragonItem item = item("DA_Artifact_GoldCollector", "Gold Collector", List.of(), List.of());
+
+		assertThat(ItemClassifier.classify(item)).contains(ItemCategory.ARTIFACT);
+	}
+
+	@Test
 	void shouldReturnArtifact_whenArtifactNameStartsWithRadiant() {
 		CdragonItem item = item("TFT17_Item_Artifact_KayleArtifact_Radiant", "Radiant Exaltation", List.of(), List.of());
 
