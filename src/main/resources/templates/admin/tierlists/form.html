@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Tier list')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container page page--narrow" th:with="
+        heading=${mode.name() == 'CREATE' ? 'New tier list' : (mode.name() == 'EDIT' ? 'Edit tier list' : 'Copy to new patch')},
+        action=${mode.name() == 'CREATE' ? '/admin/tierlists'
+              : (mode.name() == 'EDIT' ? '/admin/tierlists/' + tierListId : '/admin/tierlists/' + tierListId + '/copy')}">
+    <p th:if="${tierListId}"><a th:href="@{/admin/tierlists/{id}(id=${tierListId})}">&larr; Back to tier list</a></p>
+    <h1 th:text="${heading}">New tier list</h1>
+    <p th:if="${mode.name() == 'COPY'}" class="muted">
+        All compositions are copied into a new draft. Change what is different in the new patch, then publish it.
+    </p>
+
+    <form th:action="@{${action}}" th:object="${tierListForm}" method="post" class="card form">
+        <p th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.globalErrors()}" th:text="${error}"
+           class="alert alert--error"></p>
+
+        <label for="title">Title</label>
+        <input id="title" type="text" th:field="*{title}" maxlength="100" required>
+        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="field-error"></p>
+
+        <label for="patch">Patch</label>
+        <input id="patch" type="text" th:field="*{patch}" placeholder="e.g. 16.3" maxlength="10" required>
+        <p th:if="${#fields.hasErrors('patch')}" th:errors="*{patch}" class="field-error"></p>
+
+        <th:block th:if="${mode.name() == 'CREATE'}">
+            <label for="setNumber">Set number</label>
+            <input id="setNumber" type="number" th:field="*{setNumber}" min="1" max="99" required>
+            <p th:if="${#fields.hasErrors('setNumber')}" th:errors="*{setNumber}" class="field-error"></p>
+        </th:block>
+        <th:block th:unless="${mode.name() == 'CREATE'}">
+            <input type="hidden" th:field="*{setNumber}">
+            <p class="muted" th:text="|Set *{setNumber}|">Set 18</p>
+        </th:block>
+
+        <button type="submit" class="button" th:text="${mode.name() == 'COPY' ? 'Create copy' : 'Save'}">Save</button>
+    </form>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

@@ -12,6 +12,9 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
+    properties:
+      # Lazy collections (e.g. units of all compositions) are loaded in batches instead of one query each (N+1)
+      hibernate.default_batch_fetch_size: 50
 
 app:
   admin:

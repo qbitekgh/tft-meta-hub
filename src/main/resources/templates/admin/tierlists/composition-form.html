@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Composition')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container page" th:with="action=${compositionId == null
+        ? '/admin/tierlists/' + options.tierListId + '/compositions'
+        : '/admin/tierlists/' + options.tierListId + '/compositions/' + compositionId}">
+    <p><a th:href="@{/admin/tierlists/{id}(id=${options.tierListId})}">&larr; <span th:text="${options.tierListTitle}">Tier list</span></a></p>
+    <h1 th:text="${compositionId == null ? 'Add composition' : 'Edit composition'}">Add composition</h1>
+
+    <form th:action="@{${action}}" th:object="${compositionForm}" method="post" class="form">
+        <p th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.globalErrors()}" th:text="${error}"
+           class="alert alert--error"></p>
+
+        <section class="card form-grid">
+            <div class="form-grid__wide">
+                <label for="name">Name</label>
+                <input id="name" type="text" th:field="*{name}" maxlength="100" required>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="field-error"></p>
+            </div>
+            <div>
+                <label for="tier">Tier</label>
+                <select id="tier" th:field="*{tier}" required>
+                    <option value="">Choose...</option>
+                    <option th:each="tier : ${tiers}" th:value="${tier}" th:text="${tier.label}">S</option>
+                </select>
+                <p th:if="${#fields.hasErrors('tier')}" th:errors="*{tier}" class="field-error"></p>
+            </div>
+            <div>
+                <label for="position">Position in tier</label>
+                <input id="position" type="number" th:field="*{position}" min="1" max="99" required>
+                <p th:if="${#fields.hasErrors('position')}" th:errors="*{position}" class="field-error"></p>
+            </div>
+            <div>
+                <label for="playStyle">Play style</label>
+                <select id="playStyle" th:field="*{playStyle}" required>
+                    <option value="">Choose...</option>
+                    <option th:each="style : ${playStyles}" th:value="${style}" th:text="${style.label}">Fast 8</option>
+                </select>
+                <p th:if="${#fields.hasErrors('playStyle')}" th:errors="*{playStyle}" class="field-error"></p>
+            </div>
+            <div>
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty" th:field="*{difficulty}" required>
+                    <option value="">Choose...</option>
+                    <option th:each="difficulty : ${difficulties}" th:value="${difficulty}" th:text="${difficulty.label}">Easy</option>
+                </select>
+                <p th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}" class="field-error"></p>
+            </div>
+            <div class="form-grid__wide">
+                <label for="tips">Tips</label>
+                <textarea id="tips" th:field="*{tips}" rows="5" maxlength="2000"></textarea>
+                <p th:if="${#fields.hasErrors('tips')}" th:errors="*{tips}" class="field-error"></p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Final board</h2>
+            <p class="muted">Pick 1 to 10 champions. Rows without a champion are ignored.</p>
+            <div class="table-scroll">
+                <table class="table unit-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Champion</th>
+                        <th>Stars</th>
+                        <th>Carry</th>
+                        <th>Item 1</th>
+                        <th>Item 2</th>
+                        <th>Item 3</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="unit, row : *{units}">
+                        <td th:text="${row.count}">1</td>
+                        <td>
+                            <select th:field="*{units[__${row.index}__].championId}" th:attr="aria-label=|Champion ${row.count}|">
+                                <option value="">&mdash;</option>
+                                <option th:each="champion : ${options.champions}" th:value="${champion.id}"
+                                        th:text="|${champion.name} (${champion.cost})|">Ahri (3)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select th:field="*{units[__${row.index}__].starLevel}" th:attr="aria-label=|Stars ${row.count}|">
+                                <option th:each="stars : ${#numbers.sequence(1, 3)}" th:value="${stars}" th:text="${stars} + '★'">2★</option>
+                            </select>
+                        </td>
+                        <td class="unit-table__carry">
+                            <input type="checkbox" th:field="*{units[__${row.index}__].carry}" th:attr="aria-label=|Carry ${row.count}|">
+                        </td>
+                        <td th:each="slot : ${#numbers.sequence(0, 2)}">
+                            <select th:field="*{units[__${row.index}__].itemIds[__${slot}__]}" th:attr="aria-label=|Item ${slot + 1} of unit ${row.count}|">
+                                <option value="">&mdash;</option>
+                                <optgroup th:each="category : ${options.itemsByCategory}" th:label="${category.key}">
+                                    <option th:each="item : ${category.value}" th:value="${item.id}" th:text="${item.name}">Item</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p th:if="${#fields.hasErrors('units*')}" class="field-error">Check the star levels of the units.</p>
+        </section>
+
+        <div class="actions">
+            <button type="submit" class="button">Save composition</button>
+            <a th:href="@{/admin/tierlists/{id}(id=${options.tierListId})}" class="button button--secondary">Cancel</a>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

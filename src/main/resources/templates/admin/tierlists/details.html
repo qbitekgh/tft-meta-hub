@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${tierList.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container page">
+    <p><a th:href="@{/admin}">&larr; Admin panel</a></p>
+
+    <p th:if="${successMessage}" th:text="${successMessage}" class="alert alert--success"></p>
+    <p th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert--error"></p>
+
+    <div class="page-header">
+        <div>
+            <h1 th:text="${tierList.title}">Tier list</h1>
+            <p class="muted">
+                Patch <span th:text="${tierList.patch}">16.3</span> &middot;
+                Set <span th:text="${tierList.setNumber}">16</span> &middot;
+                <span th:text="${tierList.status}" th:class="|badge badge--${#strings.toLowerCase(tierList.status)}|">DRAFT</span>
+                <th:block th:if="${tierList.publishedAt}">
+                    &middot; published <span th:text="${#temporals.format(tierList.publishedAt, 'yyyy-MM-dd HH:mm')}"></span>
+                </th:block>
+            </p>
+        </div>
+        <div class="actions">
+            <a th:if="${tierList.editable}" th:href="@{/admin/tierlists/{id}/edit(id=${tierList.id})}" class="button button--secondary">Edit details</a>
+            <a th:href="@{/admin/tierlists/{id}/copy(id=${tierList.id})}" class="button button--secondary">Copy to new patch</a>
+            <form th:if="${tierList.status.name() == 'DRAFT'}" th:action="@{/admin/tierlists/{id}/publish(id=${tierList.id})}"
+                  method="post" onsubmit="return confirm('Publish this tier list? The currently published one will be archived.');">
+                <button type="submit" class="button">Publish</button>
+            </form>
+            <form th:if="${tierList.deletable}" th:action="@{/admin/tierlists/{id}/delete(id=${tierList.id})}"
+                  method="post" onsubmit="return confirm('Delete this draft with all its compositions?');">
+                <button type="submit" class="button button--danger">Delete</button>
+            </form>
+        </div>
+    </div>
+
+    <p th:unless="${tierList.editable}" class="alert">
+        This tier list is archived and read-only. Use "Copy to new patch" to reuse it.
+    </p>
+
+    <section class="card">
+        <div class="card__header">
+            <h2>Compositions</h2>
+            <a th:if="${tierList.editable}" th:href="@{/admin/tierlists/{id}/compositions/new(id=${tierList.id})}" class="button">Add composition</a>
+        </div>
+        <p th:if="${#lists.isEmpty(tierList.compositions)}" class="muted">No compositions yet.</p>
+        <table th:unless="${#lists.isEmpty(tierList.compositions)}" class="table">
+            <thead>
+            <tr>
+                <th>Tier</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Style</th>
+                <th>Difficulty</th>
+                <th>Final board</th>
+                <th th:if="${tierList.editable}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="composition : ${tierList.compositions}">
+                <td><span th:text="${composition.tier.label}" th:class="|tier-badge tier-badge--${#strings.toLowerCase(composition.tier)}|">S</span></td>
+                <td th:text="${composition.position}">1</td>
+                <td th:text="${composition.name}">Name</td>
+                <td th:text="${composition.playStyle.label}">Fast 8</td>
+                <td th:text="${composition.difficulty.label}">Medium</td>
+                <td>
+                    <ul class="unit-list">
+                        <li th:each="unit : ${composition.units}" th:classappend="${unit.carry} ? 'unit-list__item--carry'">
+                            <span th:text="${unit.championName}">Ahri</span>
+                            <span class="muted" th:text="${unit.starLevel} + '★'">2★</span>
+                            <span th:if="${!#lists.isEmpty(unit.items)}" class="muted"
+                                  th:text="'(' + ${#strings.listJoin(unit.items.![name], ', ')} + ')'">(Items)</span>
+                        </li>
+                    </ul>
+                </td>
+                <td th:if="${tierList.editable}" class="actions">
+                    <a th:href="@{/admin/tierlists/{id}/compositions/{cid}/edit(id=${tierList.id},cid=${composition.id})}">Edit</a>
+                    <form th:action="@{/admin/tierlists/{id}/compositions/{cid}/delete(id=${tierList.id},cid=${composition.id})}"
+                          method="post" onsubmit="return confirm('Remove this composition?');">
+                        <button type="submit" class="link-button link-button--danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
