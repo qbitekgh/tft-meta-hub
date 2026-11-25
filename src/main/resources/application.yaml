@@ -8,6 +8,10 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/tftmetahub}
     username: ${DB_USERNAME:tftmetahub}
     password: ${DB_PASSWORD:tftmetahub}
+  web:
+    # The UI is in English; dates must not depend on the operating system's language
+    locale: en
+    locale-resolver: fixed
   jpa:
     open-in-view: false
     hibernate:

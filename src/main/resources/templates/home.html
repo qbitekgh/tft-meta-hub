@@ -5,11 +5,51 @@
 <header th:replace="~{fragments/layout :: header}"></header>
 
 <main class="container page">
-    <h1>Tier list</h1>
-    <div class="empty-state">
-        <p>No tier list has been published yet.</p>
-        <p class="muted">Check back after the next patch.</p>
-    </div>
+    <th:block th:if="${tierList == null}">
+        <h1>Tier list</h1>
+        <div class="empty-state">
+            <p>No tier list has been published yet.</p>
+            <p class="muted">Check back after the next patch.</p>
+        </div>
+    </th:block>
+
+    <th:block th:if="${tierList != null}">
+        <div class="page-header">
+            <div>
+                <h1 th:text="${tierList.title}">Tier list</h1>
+                <p class="muted">
+                    Patch <span th:text="${tierList.patch}">16.3</span>
+                    <th:block th:if="${tierList.publishedAt}">
+                        &middot; updated <span th:text="${#temporals.format(tierList.publishedAt, 'd MMM yyyy')}">1 Jan 2026</span>
+                    </th:block>
+                </p>
+            </div>
+        </div>
+
+        <p th:if="${#maps.isEmpty(tierList.compositionsByTier)}" class="empty-state">This tier list has no compositions yet.</p>
+
+        <section th:each="entry : ${tierList.compositionsByTier}" class="tier-row"
+                 th:attr="aria-label=|${entry.key.label} tier|">
+            <div th:class="|tier-row__label tier-badge--${#strings.toLowerCase(entry.key)}|" th:text="${entry.key.label}">S</div>
+            <div class="tier-row__comps">
+                <a th:each="composition : ${entry.value}" th:href="@{/comps/{id}(id=${composition.id})}" class="comp-card">
+                    <div class="comp-card__header">
+                        <h2 class="comp-card__name" th:text="${composition.name}">Composition</h2>
+                        <div class="comp-card__tags">
+                            <span class="chip" th:text="${composition.playStyle.label}">Fast 8</span>
+                            <span th:class="|chip chip--${#strings.toLowerCase(composition.difficulty)}|"
+                                  th:text="${composition.difficulty.label}">Medium</span>
+                        </div>
+                    </div>
+                    <div class="comp-card__units">
+                        <th:block th:each="unit : ${composition.units}">
+                            <div th:replace="~{fragments/units :: unit(${unit}, 'small', ${unit.carry})}"></div>
+                        </th:block>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </th:block>
 </main>
 
 <footer th:replace="~{fragments/layout :: footer}"></footer>

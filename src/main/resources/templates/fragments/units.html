@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--/*
+    One champion of a composition: portrait framed in the colour of its cost, star level, carry marker and items.
+    Parameters: unit (UnitView), size ('small' on cards, 'large' on the details page), showItems (boolean).
+    Icons are loaded from Community Dragon; if one fails to load, onerror removes it and the first letter
+    of the name underneath becomes visible instead of a broken image.
+*/-->
+<div th:fragment="unit(unit, size, showItems)"
+     th:class="|unit unit--${size} unit--cost-${unit.cost}|"
+     th:classappend="${unit.carry} ? 'unit--carry'">
+    <div class="unit__portrait" th:title="${unit.championName}">
+        <span class="unit__fallback" th:text="${#strings.substring(unit.championName, 0, 1)}" aria-hidden="true">A</span>
+        <img th:if="${unit.championIconUrl}" th:src="${unit.championIconUrl}" th:alt="${unit.championName}"
+             loading="lazy" width="64" height="64" onerror="this.remove()">
+        <span class="unit__stars" th:text="${#strings.repeat('★', unit.starLevel)}"
+              th:attr="aria-label=|${unit.starLevel} stars|">★★</span>
+        <span th:if="${unit.carry}" class="unit__carry-badge">Carry</span>
+    </div>
+    <div th:if="${showItems and !#lists.isEmpty(unit.items)}" class="unit__items">
+        <span th:each="item : ${unit.items}" class="unit__item" th:title="${item.name}">
+            <span class="unit__item-fallback" th:text="${#strings.substring(item.name, 0, 1)}" aria-hidden="true">I</span>
+            <img th:if="${item.iconUrl}" th:src="${item.iconUrl}" th:alt="${item.name}"
+                 loading="lazy" width="20" height="20" onerror="this.remove()">
+        </span>
+    </div>
+    <span class="unit__name" th:text="${unit.championName}">Ahri</span>
+</div>
+
+</body>
+</html>

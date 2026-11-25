@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${published.composition.name})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container page" th:with="composition=${published.composition}">
+    <p><a th:href="@{/}">&larr; <span th:text="${published.tierListTitle}">Tier list</span></a></p>
+
+    <div class="page-header">
+        <div>
+            <h1 th:text="${composition.name}">Composition</h1>
+            <div class="comp-card__tags">
+                <span th:class="|tier-badge tier-badge--${#strings.toLowerCase(composition.tier)}|"
+                      th:text="|${composition.tier.label} tier|">S tier</span>
+                <span class="chip" th:text="${composition.playStyle.label}">Fast 8</span>
+                <span th:class="|chip chip--${#strings.toLowerCase(composition.difficulty)}|"
+                      th:text="${composition.difficulty.label}">Medium</span>
+                <span class="muted" th:text="|Patch ${published.patch}|">Patch 16.3</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="card">
+        <h2>Final board</h2>
+        <div class="board">
+            <th:block th:each="unit : ${composition.units}">
+                <div th:replace="~{fragments/units :: unit(${unit}, 'large', true)}"></div>
+            </th:block>
+        </div>
+    </section>
+
+    <section class="card" th:if="${!#lists.isEmpty(composition.units.?[!items.isEmpty()])}">
+        <h2>Items</h2>
+        <ul class="item-list">
+            <li th:each="unit : ${composition.units.?[!items.isEmpty()]}">
+                <strong th:text="${unit.championName}">Ahri</strong><span th:if="${unit.carry}" class="muted"> (carry)</span>:
+                <span th:text="${#strings.listJoin(unit.items.![name], ', ')}">Items</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="card" th:if="${composition.tips}">
+        <h2>Tips</h2>
+        <p class="tips" th:text="${composition.tips}">Tips</p>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

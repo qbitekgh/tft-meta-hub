@@ -8,6 +8,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.kubit.tft_meta_hub.gamedata.GameDataImportService;
+import pl.kubit.tft_meta_hub.tierlist.PublicTierListService;
 import pl.kubit.tft_meta_hub.tierlist.TierListService;
 
 import static org.hamcrest.Matchers.containsString;
@@ -41,6 +42,9 @@ class WebSecurityTest {
 
 	@MockitoBean
 	private TierListService tierListService;
+
+	@MockitoBean
+	private PublicTierListService publicTierListService;
 
 	@Test
 	void shouldShowHomePageWithRiotNotice_whenUserIsAnonymous() throws Exception {
