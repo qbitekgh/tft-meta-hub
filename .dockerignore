@@ -1,0 +1,10 @@
+# Only the Maven wrapper, pom.xml and src/ are needed to build the image.
+# .env must never end up in an image: secrets are passed as environment variables at runtime.
+.env
+.git
+.github
+.idea
+.vscode
+target
+*.iml
+*.md

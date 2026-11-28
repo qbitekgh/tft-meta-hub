@@ -13,6 +13,7 @@
         <a th:href="@{/}" class="site-header__logo">TFT Meta Hub</a>
         <nav class="site-nav">
             <a th:href="@{/}">Tier list</a>
+            <a th:href="@{/explorer}">Explorer</a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Admin</a>
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" class="site-nav__logout">
                 <button type="submit" class="link-button">Log out</button>

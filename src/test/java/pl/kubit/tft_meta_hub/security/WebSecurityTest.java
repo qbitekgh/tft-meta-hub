@@ -11,13 +11,20 @@ import org.springframework.test.web.servlet.MockMvc;
 import pl.kubit.tft_meta_hub.collector.CollectorRunner;
 import pl.kubit.tft_meta_hub.collector.CollectorStatus;
 import pl.kubit.tft_meta_hub.collector.CollectorStatusService;
+import pl.kubit.tft_meta_hub.explorer.ExplorerPage;
+import pl.kubit.tft_meta_hub.explorer.ExplorerRequest;
+import pl.kubit.tft_meta_hub.explorer.ExplorerService;
+import pl.kubit.tft_meta_hub.explorer.ExplorerState;
 import pl.kubit.tft_meta_hub.gamedata.GameDataImportService;
 import pl.kubit.tft_meta_hub.gamedata.GamePatchService;
 import pl.kubit.tft_meta_hub.tierlist.PublicTierListService;
 import pl.kubit.tft_meta_hub.tierlist.TierListService;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
@@ -61,6 +68,9 @@ class WebSecurityTest {
 	@MockitoBean
 	private GamePatchService gamePatchService;
 
+	@MockitoBean
+	private ExplorerService explorerService;
+
 	@BeforeEach
 	void setUp() {
 		given(collectorStatusService.getStatus()).willReturn(new CollectorStatus(false, null, 0, null));
@@ -74,6 +84,19 @@ class WebSecurityTest {
 				.andExpect(content().string(containsString("No tier list has been published yet.")))
 				.andExpect(content().string(containsString(RIOT_NOTICE)))
 				.andExpect(content().string(containsString("Admin login")));
+	}
+
+	@Test
+	void shouldShowExplorerWithRiotNotice_whenUserIsAnonymous() throws Exception {
+		ExplorerState state = ExplorerState.from(ExplorerRequest.empty(), List.of());
+		given(explorerService.explore(any())).willReturn(new ExplorerPage(state,
+				List.of(), null, List.of(), List.of(),
+				new ExplorerPage.FilterOptions(List.of(), List.of(), List.of())));
+
+		mockMvc.perform(get("/explorer"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("explorer"))
+				.andExpect(content().string(containsString(RIOT_NOTICE)));
 	}
 
 	@Test

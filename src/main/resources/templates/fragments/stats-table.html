@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--/*
+    The statistics table shared by every explorer tab (Units, Items, Builds, Traits).
+    Parameters: page (ExplorerPage), links (ExplorerLinks), firstColumn (header of the name column).
+    Clicking a row adds its element as a filter (explorer.js follows the row's data-href; the name is also a link,
+    so it works with the keyboard and without JavaScript).
+*/-->
+<div th:fragment="table(page, links, firstColumn)" class="table-scroll">
+    <table class="table stats-table" th:with="state=${page.state}">
+        <thead>
+        <tr>
+            <th th:text="${firstColumn}">Unit</th>
+            <th class="stats-table__number">
+                <a th:href="@{${links.sort(state, 'AVG_PLACE')}}"
+                   th:classappend="${state.sort.name() == 'AVG_PLACE'} ? 'is-sorted'">Avg place</a>
+            </th>
+            <th class="stats-table__number">
+                <a th:href="@{${links.sort(state, 'TOP4')}}"
+                   th:classappend="${state.sort.name() == 'TOP4'} ? 'is-sorted'">Top 4</a>
+            </th>
+            <th class="stats-table__number">
+                <a th:href="@{${links.sort(state, 'WIN')}}"
+                   th:classappend="${state.sort.name() == 'WIN'} ? 'is-sorted'">Win</a>
+            </th>
+            <th class="stats-table__number">
+                <a th:href="@{${links.sort(state, 'GAMES')}}"
+                   th:classappend="${state.sort.name() == 'GAMES'} ? 'is-sorted'">Games</a>
+            </th>
+            <th class="stats-table__number">Frequency</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${page.rows}" class="stats-table__row"
+            th:attr="data-href=@{${links.add(state, row.filtersToAdd)}},data-name=${#strings.toLowerCase(row.name)}">
+            <td>
+                <a th:href="@{${links.add(state, row.filtersToAdd)}}" class="stats-table__element"
+                   th:title="|Add ${row.name} as a filter|">
+                    <span th:each="icon : ${row.icons}" class="stat-icon"
+                          th:classappend="${icon.cost != null} ? |stat-icon--cost-${icon.cost}|">
+                        <span class="stat-icon__fallback" th:text="${#strings.substring(icon.name, 0, 1)}"
+                              aria-hidden="true">A</span>
+                        <img th:if="${icon.iconUrl}" th:src="${icon.iconUrl}" th:alt="${icon.name}"
+                             loading="lazy" width="32" height="32" onerror="this.remove()">
+                    </span>
+                    <span th:text="${row.name}">Ahri</span>
+                </a>
+            </td>
+            <td class="stats-table__number">
+                <span th:class="|avg avg--${row.stats.avgPlacement < 4.0 ? 1 : (row.stats.avgPlacement < 4.3 ? 2 : (row.stats.avgPlacement < 4.7 ? 3 : (row.stats.avgPlacement < 5.0 ? 4 : 5)))}|"
+                      th:text="${#numbers.formatDecimal(row.stats.avgPlacement, 1, 2)}">4.12</span>
+            </td>
+            <td class="stats-table__number" th:text="${#numbers.formatPercent(row.stats.top4Rate, 1, 1)}">52.0%</td>
+            <td class="stats-table__number" th:text="${#numbers.formatPercent(row.stats.winRate, 1, 1)}">13.0%</td>
+            <td class="stats-table__number" th:text="${row.stats.games}">120</td>
+            <td class="stats-table__number" th:text="${#numbers.formatPercent(row.frequency, 1, 1)}">8.5%</td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:if="${#lists.isEmpty(page.rows)}" class="empty-state">No rows with at least
+        <span th:text="${page.state.minGames}">10</span> games. Try fewer filters, a longer time range or a lower minimum.</p>
+    <p class="empty-state stats-table__no-match" hidden>No rows match the search.</p>
+</div>
+
+</body>
+</html>

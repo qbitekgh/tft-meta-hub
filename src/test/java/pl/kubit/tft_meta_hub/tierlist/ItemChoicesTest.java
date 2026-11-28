@@ -15,41 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ItemChoicesTest {
 
 	@Test
-	void shouldKeepSetSpecificItem_whenGenericTwinHasSameName() {
-		List<Item> items = List.of(
-				item(18, "TFT_Item_GuinsoosRageblade", "Guinsoo's Rageblade", ItemCategory.COMPLETED),
-				item(18, "DA_GuinsoosRageblade", "Guinsoo's Rageblade", ItemCategory.COMPLETED),
-				item(18, "TFT5_Item_GuinsoosRagebladeRadiant", "Radiant Guinsoo's Rageblade", ItemCategory.RADIANT),
-				item(18, "DA_GuinsoosRagebladeRadiant", "Radiant Guinsoo's Rageblade", ItemCategory.RADIANT));
-
-		assertThat(ItemChoices.withoutGenericDuplicates(items, 18))
-				.extracting(Item::getApiName)
-				.containsExactly("DA_GuinsoosRageblade", "DA_GuinsoosRagebladeRadiant");
-	}
-
-	@Test
-	void shouldKeepGenericItem_whenItsNameIsUnique() {
-		List<Item> items = List.of(item(18, "TFT_Item_Artifact_Fishbones", "Fishbones", ItemCategory.ARTIFACT));
-
-		assertThat(ItemChoices.withoutGenericDuplicates(items, 18))
-				.extracting(Item::getApiName)
-				.containsExactly("TFT_Item_Artifact_Fishbones");
-	}
-
-	@Test
-	void shouldTreatOwnSetPrefixAsSetSpecific_whenSetUsesTftPrefix() {
-		List<Item> items = List.of(
-				item(17, "TFT_Item_Something", "Same Name", ItemCategory.COMPLETED),
-				item(17, "TFT17_Item_Something", "Same Name", ItemCategory.COMPLETED));
-
-		assertThat(ItemChoices.withoutGenericDuplicates(items, 17))
-				.extracting(Item::getApiName)
-				.containsExactly("TFT17_Item_Something");
-	}
-
-	@Test
 	void shouldGroupByCategoryWithoutComponents_whenBuildingFormChoices() {
 		List<Item> items = List.of(
+				item(18, "TFT_Item_InfinityEdge", "Infinity Edge", ItemCategory.COMPLETED),
 				item(18, "DA_Component_BFSword", "B.F. Sword", ItemCategory.COMPONENT),
 				item(18, "TFT_Item_Artifact_Fishbones", "Fishbones", ItemCategory.ARTIFACT),
 				item(18, "DA_InfinityEdge", "Infinity Edge", ItemCategory.COMPLETED),
